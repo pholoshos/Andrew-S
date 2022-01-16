@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="{{ url_for('static', filename='bootstrap.min.css') }}"rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-md">
+          <a class="navbar-brand" href="#">Andrew</a>
+        </div>
+      </nav>
+    <div class="container">
+        <br>
+        <h1>hello, i am andrew</h1>
+        <p>Hello welcome, say something to andrew</p>
+        <hr>
+
+        <div class="alert">
+            <span><span class="badge bg-info text-dark">Andrew:</span> <span id="resp">{{response}}</span></span>
+            <br>
+            <span> <span class="badge bg-light text-dark">You:</span> {{message}}</span>
+        </div>
+        <div>
+            <form action="/talk" method="post">
+                <input name="message" placeholder="say something" class="form-control">
+                <br>
+                <button type="submit" class="btn btn-secondary">Send</button>
+            </form>
+        </div>
+
+    </div>
+
+    <script>
+        var respText = document.getElementById('resp').innerText;
+        console.log(respText);
+        var msg = new SpeechSynthesisUtterance(respText);
+        var voices = window.speechSynthesis.getVoices();
+        msg.lang = 'en-US';
+        msg.pitch = 0.8;
+        window.speechSynthesis.speak(msg);
+    </script>
+</body>
+</html>
